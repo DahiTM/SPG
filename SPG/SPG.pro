@@ -8,12 +8,19 @@ CONFIG += c++20
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+VERSION = 0.0.0.1
+QMAKE_TARGET_COMPANY = NaN
+QMAKE_TARGET_PRODUCT = SPG
+QMAKE_TARGET_DESCRIPTION = SPG - Storage Password Generation
+
 SOURCES += \
+    classPasswordGeneration.cpp \
     main.cpp \
     mainwindow.cpp \
     passwordGenerator.cpp
 
 HEADERS += \
+    classPasswordGeneration.h \
     mainwindow.h \
     passwordGenerator.h
 

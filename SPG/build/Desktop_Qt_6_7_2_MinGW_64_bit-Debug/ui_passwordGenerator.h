@@ -10,6 +10,7 @@
 #define UI_PASSWORDGENERATOR_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QFrame>
@@ -53,6 +54,8 @@ public:
         PasswordGenerator->resize(309, 182);
         PasswordGenerator->setMinimumSize(QSize(309, 182));
         PasswordGenerator->setMaximumSize(QSize(309, 182));
+        QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::AddressBookNew));
+        PasswordGenerator->setWindowIcon(icon);
         gridLayout_2 = new QGridLayout(PasswordGenerator);
         gridLayout_2->setObjectName("gridLayout_2");
         horizontalLayout_3 = new QHBoxLayout();
@@ -81,6 +84,10 @@ public:
         pushButton->setObjectName("pushButton");
         pushButton->setMinimumSize(QSize(41, 41));
         pushButton->setMaximumSize(QSize(41, 41));
+        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::EditCopy));
+        pushButton->setIcon(icon1);
+        pushButton->setIconSize(QSize(25, 25));
+        pushButton->setCheckable(false);
 
         horizontalLayout_3->addWidget(pushButton);
 
@@ -88,6 +95,9 @@ public:
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setMinimumSize(QSize(41, 41));
         pushButton_2->setMaximumSize(QSize(41, 41));
+        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::SyncSynchronizing));
+        pushButton_2->setIcon(icon2);
+        pushButton_2->setIconSize(QSize(25, 25));
 
         horizontalLayout_3->addWidget(pushButton_2);
 
@@ -126,8 +136,9 @@ public:
         QFont font2;
         font2.setPointSize(10);
         spinBox->setFont(font2);
-        spinBox->setMinimum(8);
-        spinBox->setMaximum(20);
+        spinBox->setMinimum(10);
+        spinBox->setMaximum(23);
+        spinBox->setValue(16);
 
         horizontalLayout_2->addWidget(spinBox);
 
@@ -172,8 +183,8 @@ public:
     {
         PasswordGenerator->setWindowTitle(QCoreApplication::translate("PasswordGenerator", "\320\223\320\265\320\275\320\265\321\200\320\260\321\202\320\276\321\200 \320\277\320\260\321\200\320\276\320\273\320\265\320\271", nullptr));
         label_2->setText(QCoreApplication::translate("PasswordGenerator", "\320\277\320\260\321\200\320\276\320\273\321\214", nullptr));
-        pushButton->setText(QCoreApplication::translate("PasswordGenerator", "\320\232\320\276\320\277", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("PasswordGenerator", "\320\236\320\261\320\275\320\276\320\262", nullptr));
+        pushButton->setText(QString());
+        pushButton_2->setText(QString());
         label->setText(QCoreApplication::translate("PasswordGenerator", "\320\237\320\260\321\200\320\276\320\273\321\214:", nullptr));
         label_3->setText(QCoreApplication::translate("PasswordGenerator", "\320\224\320\273\320\270\320\275\320\260 \320\277\320\260\321\200\320\276\320\273\321\217:", nullptr));
         label_4->setText(QCoreApplication::translate("PasswordGenerator", "\320\241\320\277\320\265\321\206\320\270\320\260\320\273\321\214\320\275\321\213\320\265 \321\201\320\270\320\274\320\262\320\276\320\273\321\213", nullptr));
