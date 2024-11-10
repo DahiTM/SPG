@@ -398,7 +398,7 @@ public:
         action->setText(QCoreApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272 \320\277\320\276 \320\275\320\260\320\267\320\262\320\260\320\275\320\270\321\216 \321\201\320\260\320\271\321\202\320\260", nullptr));
         lineEdit_4->setText(QString());
-        lineEdit_4->setPlaceholderText(QString());
+        lineEdit_4->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\321\200: yandex", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\276\320\264 \320\275\320\276\320\262\321\213\321\205 \320\264\320\260\320\275\320\275\321\213\321\205", nullptr));
         lineEdit->setText(QString());
         lineEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \321\201\320\260\320\271\321\202\320\260", nullptr));

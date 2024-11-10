@@ -10,13 +10,16 @@ CONFIG += c++20
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    passwordGenerator.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    passwordGenerator.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    passwordGenerator.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

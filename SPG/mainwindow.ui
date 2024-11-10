@@ -163,7 +163,7 @@
             <bool>false</bool>
            </property>
            <property name="placeholderText">
-            <string/>
+            <string>Пример: yandex</string>
            </property>
           </widget>
          </item>
