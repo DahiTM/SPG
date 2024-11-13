@@ -406,9 +406,9 @@ public:
         lineEdit_2->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\233\320\276\320\263\320\270\320\275", nullptr));
         lineEdit_3->setText(QString());
         lineEdit_3->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\237\320\260\321\200\320\276\320\273\321\214", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "\320\221\321\203\320\272\320\262 \320\261\320\276\320\273\321\214\321\210\320\265 5", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\320\241\320\270\320\274\320\262\320\276\320\273\320\276\320\262 \320\261\320\276\320\273\321\214\321\210\320\265 5", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "\320\225\321\201\321\202\321\214 \320\267\320\260\320\263\320\273\320\260\320\262\320\275\320\260\321\217 \320\261\321\203\320\272\320\262\320\260", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "\320\225\321\201\321\202\321\214 \321\201\320\270\320\274\320\262\320\276\320\273\321\213", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "\320\225\321\201\321\202\321\214 \321\201\320\277\320\265\321\206. \320\267\320\275\320\260\320\272\320\270", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "\320\225\321\201\321\202\321\214 \321\206\320\270\321\204\321\200\321\213", nullptr));
         checkBox->setText(QString());
         checkBox_2->setText(QString());

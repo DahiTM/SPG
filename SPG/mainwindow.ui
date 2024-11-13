@@ -330,7 +330,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>Букв больше 5</string>
+                <string>Символов больше 5</string>
                </property>
               </widget>
              </item>
@@ -356,7 +356,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>Есть символы</string>
+                <string>Есть спец. знаки</string>
                </property>
               </widget>
              </item>
