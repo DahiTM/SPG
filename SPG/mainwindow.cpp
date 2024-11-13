@@ -15,7 +15,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-
+    if(ifPass){
+        qDebug() << "true";
+    }else{
+        qDebug() << "false";
+    }
 }
 
 
@@ -35,9 +39,11 @@ void MainWindow::on_lineEdit_3_textChanged(const QString &arg1)
         ui->checkBox->setCheckable(true);
         ui->checkBox->setCheckState(Qt::Checked);
         ui->checkBox->setEnabled(false);
+        ifPass = true;
     }else{
         ui->checkBox->setCheckable(false);
         ui->checkBox->setCheckState(Qt::Unchecked);
+        ifPass = false;
     }
 
     if(IF_BIG_LETTERS.match(arg1).hasMatch()){

@@ -326,6 +326,16 @@ debug/moc_mainwindow.cpp: ../../mainwindow.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QVector \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/qvector.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QString \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QLineEdit \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qlineedit.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qframe.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextcursor.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextformat.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qpen.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextoption.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QRegularExpression \
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/qregularexpression.h \
 		debug/moc_predefs.h \
 		D:/QTCreator/6.7.2/mingw_64/bin/moc.exe
 	D:\QTCreator\6.7.2\mingw_64\bin\moc.exe $(DEFINES) --include D:/Porg/Repozet/SPG/SPG/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/debug/moc_predefs.h -ID:/QTCreator/6.7.2/mingw_64/mkspecs/win32-g++ -ID:/Porg/Repozet/SPG/SPG -ID:/QTCreator/6.7.2/mingw_64/include -ID:/QTCreator/6.7.2/mingw_64/include/QtWidgets -ID:/QTCreator/6.7.2/mingw_64/include/QtGui -ID:/QTCreator/6.7.2/mingw_64/include/QtCore -I. -ID:/QTCreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -ID:/QTCreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -ID:/QTCreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -ID:/QTCreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -ID:/QTCreator/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -ID:/QTCreator/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -849,7 +859,17 @@ debug/main.o: ../../main.cpp ../../mainwindow.h \
 		../../classPasswordGeneration.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QVector \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/qvector.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QString
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QString \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QLineEdit \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qlineedit.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qframe.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextcursor.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextformat.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qpen.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextoption.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QRegularExpression \
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/qregularexpression.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\..\main.cpp
 
 debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
@@ -1056,6 +1076,16 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QVector \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/qvector.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QString \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QLineEdit \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qlineedit.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qframe.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextcursor.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextformat.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qpen.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextoption.h \
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QRegularExpression \
+		D:/QTCreator/6.7.2/mingw_64/include/QtCore/qregularexpression.h \
 		ui_mainwindow.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtCore/QVariant \
 		D:/QTCreator/6.7.2/mingw_64/include/QtGui/QAction \
@@ -1070,19 +1100,11 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qboxlayout.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qgridlayout.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QFrame \
-		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qframe.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QGridLayout \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QHBoxLayout \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QLabel \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qlabel.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qpicture.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextdocument.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QLineEdit \
-		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qlineedit.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextcursor.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextformat.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qpen.h \
-		D:/QTCreator/6.7.2/mingw_64/include/QtGui/qtextoption.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QMenu \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/qmenu.h \
 		D:/QTCreator/6.7.2/mingw_64/include/QtWidgets/QMenuBar \
