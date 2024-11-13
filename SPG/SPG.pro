@@ -11,7 +11,7 @@ CONFIG += c++20
 VERSION = 0.0.0.1
 QMAKE_TARGET_COMPANY = NaN
 QMAKE_TARGET_PRODUCT = SPG
-QMAKE_TARGET_DESCRIPTION = SPG - Storage Password Generation
+QMAKE_TARGET_DESCRIPTION = SPG - Storag Password Generation
 
 SOURCES += \
     classPasswordGeneration.cpp \
