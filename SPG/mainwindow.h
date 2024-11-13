@@ -31,6 +31,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     PasswordGenerator passGen;
-    bool ifPass = false;
+    bool passLength,oneNum,oneBigLetter,oneSymbol= false;
+
 };
 #endif // MAINWINDOW_H
