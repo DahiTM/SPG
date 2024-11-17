@@ -7,11 +7,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    sit = { "Wildberis", "Ozon", "Site 3", "Yzndex", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9" };
-    log = { "user1", "user2", "user3", "user4", "user5", "user6", "Site 4", "Site 5", "Site 6","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9" };
-    pass = { "password1", "password2", "password3", "password4", "password5", "password6", "Site 4", "Site 5", "Site 6","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9"};
+    std::vector<WebsiteInfo> retrievedInfoList = readFromFile();
+    for (const WebsiteInfo& retrievedInfo : retrievedInfoList) {
+        sit.push_back(retrievedInfo.name);
+        log.push_back(retrievedInfo.username);
+        pass.push_back(retrievedInfo.password);
+    }
+    //sit = { "Wildberis", "Ozon", "Site 3", "Yzndex", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9" };
+   //log = { "user1", "user2", "user3", "user4", "user5", "user6", "Site 4", "Site 5", "Site 6","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9" };
+    //pass = { "password1", "password2", "password3", "password4", "password5", "password6", "Site 4", "Site 5", "Site 6","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9"};
 
     addNewGroupBoxesToScrollArea(ui->scrollArea,sit,log,pass);
+
 }
 
 MainWindow::~MainWindow()
@@ -21,10 +28,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    if(passLength && oneBigLetter && oneNum && oneSymbol){
+    if(passLength && oneBigLetter && oneNum && oneSymbol && !ui->lineEdit->text().isEmpty() && !ui->lineEdit_2->text().isEmpty()){
         qDebug() << "true";
+        WebsiteInfo info1 = { ui->lineEdit->text().toStdString(), ui->lineEdit_2->text().toStdString(), ui->lineEdit_3->text().toStdString() };
+
+        sit.push_back(ui->lineEdit->text().toStdString());
+        log.push_back(ui->lineEdit_2->text().toStdString());
+        pass.push_back(ui->lineEdit_3->text().toStdString());
+
+        writeToFile(info1);
+        addNewGroupBoxesToScrollArea(ui->scrollArea,sit,log,pass);
+
+        ui->lineEdit->clear();
+        ui->lineEdit_2->clear();
+        ui->lineEdit_3->clear();
     }else{
-        qDebug() << "false";
+        QMessageBox::information(this,"Информация","Ошибка при вводе пароля");
     }
 }
 
@@ -114,7 +133,7 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
     QPushButton *copyLoginButton = new QPushButton(newGroupBox);
     copyLoginButton->setIcon(QIcon::fromTheme("edit-copy"));
     copyLoginButton->setFixedSize(31, 31);
-    connect(copyLoginButton, &QPushButton::clicked, [loginEdit]() {
+    connect(copyLoginButton, &QPushButton::clicked,this, [loginEdit]() {
         QClipboard *clipboard = QApplication::clipboard();
         clipboard->setText(loginEdit->text());
 
@@ -124,19 +143,17 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
     QPushButton *copyPassButton = new QPushButton(newGroupBox);
     copyPassButton->setIcon(QIcon::fromTheme("edit-copy"));
     copyPassButton->setFixedSize(31, 31);
-    connect(copyPassButton, &QPushButton::clicked, [passwordEdit]() {
+    connect(copyPassButton, &QPushButton::clicked,this, [passwordEdit]() {
         QClipboard *clipboard = QApplication::clipboard();
         clipboard->setText(passwordEdit->text());
         QMessageBox::information(nullptr,"Информация","Пароль скопирован в буфер обмена");
     });
 
-
-
     // Кнопка для скрытия/показа пароля
     QPushButton *toggleButton = new QPushButton(newGroupBox);
     toggleButton->setIcon(style()->standardIcon(QStyle::SP_DialogNoButton));
     toggleButton->setFixedSize(31, 31);
-    connect(toggleButton, &QPushButton::clicked, [this,passwordEdit, toggleButton]() {
+    connect(toggleButton, &QPushButton::clicked,this, [this,passwordEdit, toggleButton]() {
         if (passwordEdit->echoMode() == QLineEdit::Password) {
             passwordEdit->setEchoMode(QLineEdit::Normal);
             toggleButton->setIcon(style()->standardIcon(QStyle::SP_DialogYesButton));
@@ -157,7 +174,10 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
     return newGroupBox;
 }
 
-void MainWindow::addNewGroupBoxesToScrollArea(QScrollArea* scrollArea, QStringList& sites, QStringList& logins, QStringList& passwords) {
+void MainWindow::addNewGroupBoxesToScrollArea(QScrollArea* scrollArea,
+                                              const std::vector<std::string>& sites,
+                                              const std::vector<std::string>& logins,
+                                              const std::vector<std::string>& passwords) {
 
     QWidget* scrollWidget = new QWidget();
     QVBoxLayout* scrollLayout = new QVBoxLayout(scrollWidget);
@@ -174,12 +194,14 @@ void MainWindow::addNewGroupBoxesToScrollArea(QScrollArea* scrollArea, QStringLi
     QHBoxLayout* rowLayout = nullptr;
     int column = 0;
 
-    for (int i = 0; i < sites.size(); ++i) {
+    for (size_t i = 0; i < sites.size(); ++i) {
         if (column == 0) {
             rowLayout = new QHBoxLayout();
         }
 
-        QGroupBox* newGroupBox = createNewGroupBox(sites[i], logins[i], passwords[i]);
+        QGroupBox* newGroupBox = createNewGroupBox(QString::fromStdString(sites[i]),
+                                                   QString::fromStdString(logins[i]),
+                                                   QString::fromStdString(passwords[i]));
         rowLayout->addWidget(newGroupBox);
         column++;
 
@@ -218,4 +240,33 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
     QScrollArea* existingFrame = ui->scrollArea;
     addNewGroupBoxesToScrollArea(existingFrame,sit,log,pass);
     QMainWindow::resizeEvent(event);
+}
+
+void MainWindow::writeToFile(const WebsiteInfo& infoList) {
+    std::ofstream file("infoPass.txt", std::ios::app);
+
+    file << infoList.name << "-";
+    file << infoList.username << "-";
+    file << infoList.password << "\n";
+
+    file.close();
+}
+
+std::vector<WebsiteInfo> MainWindow::readFromFile() {
+    std::vector<WebsiteInfo> infoList;
+    std::ifstream file("infoPass.txt");
+    WebsiteInfo info;
+    char razdel = '-';
+    std::string line;
+
+    while (getline(file, line)) {
+        std::istringstream iss(line);
+        getline(iss, info.name, razdel);
+        getline(iss, info.username, razdel);
+        getline(iss, info.password);
+        infoList.push_back(info);
+    }
+
+    file.close();
+    return infoList;
 }

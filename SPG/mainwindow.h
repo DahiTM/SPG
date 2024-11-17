@@ -9,8 +9,17 @@
 #include <QGroupBox>
 #include <QScrollArea>
 #include <QStyle>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <vector>
 
-
+struct WebsiteInfo {
+    std::string name;
+    std::string username;
+    std::string password;
+};
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -33,13 +42,19 @@ private slots:
     void on_lineEdit_3_textChanged(const QString &arg1);
 
     QGroupBox* createNewGroupBox(const QString& siteName, const QString& login, const QString& password);
-    void addNewGroupBoxesToScrollArea(QScrollArea* scrollArea, QStringList& sites, QStringList& logins, QStringList& passwords);
+    void addNewGroupBoxesToScrollArea(QScrollArea* scrollArea,const std::vector<std::string>& sites,
+                                                              const std::vector<std::string>& logins,
+                                                              const std::vector<std::string>& passwords);
     void resizeEvent(QResizeEvent* event);
     void showEvent(QShowEvent* event);
+
+    void writeToFile(const WebsiteInfo& infoList);
+    std::vector<WebsiteInfo> readFromFile();
 private:
     Ui::MainWindow *ui;
     PasswordGenerator passGen;
     bool passLength,oneNum,oneBigLetter,oneSymbol= false;
-    QStringList sit,log,pass;
+    std::vector<std::string> sit,log,pass;
+
 };
 #endif // MAINWINDOW_H
