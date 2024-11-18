@@ -27,12 +27,15 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     if(passLength && oneBigLetter && oneNum && oneSymbol && !ui->lineEdit->text().isEmpty() && !ui->lineEdit_2->text().isEmpty()){
-        qDebug() << "true";
-        WebsiteInfo info1 = { ui->lineEdit->text().toStdString(), ui->lineEdit_2->text().toStdString(), ui->lineEdit_3->text().toStdString() };
+
+        int shift = 3; // Сдвиг для шифра Цезаря
+        std::string encryptedPassword = caesarEncrypt(ui->lineEdit_3->text().toStdString(), shift);
+
+        WebsiteInfo info1 = { ui->lineEdit->text().toStdString(), ui->lineEdit_2->text().toStdString(), encryptedPassword };
 
         sit.push_back(ui->lineEdit->text().toStdString());
         log.push_back(ui->lineEdit_2->text().toStdString());
-        pass.push_back(ui->lineEdit_3->text().toStdString());
+        pass.push_back(encryptedPassword);
 
         writeToFile(info1);
         addNewGroupBoxesToScrollArea(ui->scrollArea,sit,log,pass);
@@ -220,9 +223,13 @@ void MainWindow::addNewGroupBoxesToScrollArea(QScrollArea* scrollArea,
             rowLayout = new QHBoxLayout();
         }
 
+        // Дешифруем пароль перед отображением
+        int shift = 3; // Сдвиг для шифра Цезаря
+        std::string decryptedPassword = caesarDecrypt(passwords[i], shift);
+
         QGroupBox* newGroupBox = createNewGroupBox(QString::fromStdString(sites[i]),
                                                    QString::fromStdString(logins[i]),
-                                                   QString::fromStdString(passwords[i]));
+                                                   QString::fromStdString(decryptedPassword));
         rowLayout->addWidget(newGroupBox);
         column++;
 
@@ -312,4 +319,19 @@ void MainWindow::onSearchTextChanged(const QString &text) {
     }
 
     addNewGroupBoxesToScrollArea(ui->scrollArea, filteredSites, filteredLogins, filteredPasswords);
+}
+
+std::string MainWindow::caesarEncrypt(const std::string &input, int shift) {
+    std::string output = input;
+    for (char &c : output) {
+        if (std::isalpha(c)) { // Проверяем, является ли символ буквой
+            char base = std::isupper(c) ? 'A' : 'a';
+            c = (c - base + shift) % 26 + base; // Шифруем символ
+        }
+    }
+    return output;
+}
+
+std::string MainWindow::caesarDecrypt(const std::string &input, int shift) {
+    return caesarEncrypt(input, 26 - shift); // Дешифрование — это шифрование с обратным сдвигом
 }

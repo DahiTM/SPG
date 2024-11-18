@@ -53,6 +53,9 @@ private slots:
     void updateFile();
 
     void onSearchTextChanged(const QString &text);
+
+    std::string caesarEncrypt(const std::string &input, int shift);
+    std::string caesarDecrypt(const std::string &input, int shift);
 private:
     Ui::MainWindow *ui;
     PasswordGenerator passGen;
