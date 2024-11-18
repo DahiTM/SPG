@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     addNewGroupBoxesToScrollArea(ui->scrollArea,sit,log,pass);
 
+    connect(ui->lineEdit_4, &QLineEdit::textChanged, this, &MainWindow::onSearchTextChanged);
 }
 
 MainWindow::~MainWindow()
@@ -265,9 +266,7 @@ void MainWindow::resizeEvent(QResizeEvent* event) {
 void MainWindow::writeToFile(const WebsiteInfo& infoList) {
     std::ofstream file("infoPass.txt", std::ios::app);
 
-    file << infoList.name << "-";
-    file << infoList.username << "-";
-    file << infoList.password << "\n";
+    file << infoList.name << "-"<< infoList.username << "-" << infoList.password << "\n";
 
     file.close();
 }
@@ -297,4 +296,20 @@ void MainWindow::updateFile() {
         file << sit[i] << "-" << log[i] << "-" << pass[i] << "\n";
     }
     file.close();
+}
+
+void MainWindow::onSearchTextChanged(const QString &text) {
+    std::vector<std::string> filteredSites;
+    std::vector<std::string> filteredLogins;
+    std::vector<std::string> filteredPasswords;
+
+    for (size_t i = 0; i < sit.size(); ++i) {
+        if (sit[i].find(text.toStdString()) == 0) {
+            filteredSites.push_back(sit[i]);
+            filteredLogins.push_back(log[i]);
+            filteredPasswords.push_back(pass[i]);
+        }
+    }
+
+    addNewGroupBoxesToScrollArea(ui->scrollArea, filteredSites, filteredLogins, filteredPasswords);
 }

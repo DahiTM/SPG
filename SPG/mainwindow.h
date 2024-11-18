@@ -51,6 +51,8 @@ private slots:
     void writeToFile(const WebsiteInfo& infoList);
     std::vector<WebsiteInfo> readFromFile();
     void updateFile();
+
+    void onSearchTextChanged(const QString &text);
 private:
     Ui::MainWindow *ui;
     PasswordGenerator passGen;
