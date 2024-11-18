@@ -13,9 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
         log.push_back(retrievedInfo.username);
         pass.push_back(retrievedInfo.password);
     }
-    //sit = { "Wildberis", "Ozon", "Site 3", "Yzndex", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9" };
-   //log = { "user1", "user2", "user3", "user4", "user5", "user6", "Site 4", "Site 5", "Site 6","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9" };
-    //pass = { "password1", "password2", "password3", "password4", "password5", "password6", "Site 4", "Site 5", "Site 6","Site 1", "Site 2", "Site 3", "Site 4", "Site 5", "Site 6", "Site 7", "Site 8", "Site 9"};
 
     addNewGroupBoxesToScrollArea(ui->scrollArea,sit,log,pass);
 
@@ -163,12 +160,35 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
         }
     });
 
+    QPushButton *deleteButton = new QPushButton(newGroupBox);
+    deleteButton->setIcon(QIcon::fromTheme("edit-delete"));
+    deleteButton->setFixedSize(31, 31);
+    connect(deleteButton, &QPushButton::clicked, this, [this, siteName, newGroupBox]() {
+        // Удаляем информацию из векторов
+        auto it = std::find(sit.begin(), sit.end(), siteName.toStdString());
+        if (it != sit.end()) {
+            size_t index = std::distance(sit.begin(), it);
+            sit.erase(it);
+            log.erase(log.begin() + index);
+            pass.erase(pass.begin() + index);
+        }
+
+        // Обновляем файл
+        updateFile();
+
+        // Удаляем QGroupBox
+        delete newGroupBox;
+        addNewGroupBoxesToScrollArea(ui->scrollArea, sit, log, pass);
+        QMessageBox::information(nullptr,"Информация","Поле с данными было удалено");
+    });
+
     loginLayout->addWidget(copyLoginButton);
     passwordLayout->addWidget(copyPassButton);
     passwordLayout->addWidget(toggleButton);
 
     layout->addLayout(loginLayout);
     layout->addLayout(passwordLayout);
+    layout->addWidget(deleteButton, 0, Qt::AlignBottom | Qt::AlignRight); // Размещение кнопки внизу справа
 
     newGroupBox->setLayout(layout);
     return newGroupBox;
@@ -269,4 +289,12 @@ std::vector<WebsiteInfo> MainWindow::readFromFile() {
 
     file.close();
     return infoList;
+}
+
+void MainWindow::updateFile() {
+    std::ofstream file("infoPass.txt", std::ios::trunc); // Очищаем файл
+    for (size_t i = 0; i < sit.size(); ++i) {
+        file << sit[i] << "-" << log[i] << "-" << pass[i] << "\n";
+    }
+    file.close();
 }

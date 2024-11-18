@@ -50,6 +50,7 @@ private slots:
 
     void writeToFile(const WebsiteInfo& infoList);
     std::vector<WebsiteInfo> readFromFile();
+    void updateFile();
 private:
     Ui::MainWindow *ui;
     PasswordGenerator passGen;
