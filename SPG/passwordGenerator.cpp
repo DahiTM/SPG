@@ -6,6 +6,8 @@ PasswordGenerator::PasswordGenerator(QWidget *parent)
     , ui(new Ui::PasswordGenerator)
 {
     ui->setupUi(this);
+    QIcon icon("images/key.png");
+    this->setWindowIcon(icon);
     ui->label_2->setText(genPass.generatPass(16,true));
 }
 

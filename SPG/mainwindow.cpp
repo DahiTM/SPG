@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QIcon icon("images/passMenag.png");
+    this->setWindowIcon(icon);
 
     std::vector<WebsiteInfo> retrievedInfoList = readFromFile();
     for (const WebsiteInfo& retrievedInfo : retrievedInfoList) {
@@ -17,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     addNewGroupBoxesToScrollArea(ui->scrollArea,sit,log,pass);
 
     connect(ui->lineEdit_4, &QLineEdit::textChanged, this, &MainWindow::onSearchTextChanged);
+    connect(ui->applicationExit, &QAction::triggered, this, &MainWindow::onApplicationExitTriggered);
 }
 
 MainWindow::~MainWindow()
@@ -334,4 +337,10 @@ std::string MainWindow::caesarEncrypt(const std::string &input, int shift) {
 
 std::string MainWindow::caesarDecrypt(const std::string &input, int shift) {
     return caesarEncrypt(input, 26 - shift); // Дешифрование — это шифрование с обратным сдвигом
+
+}
+
+void MainWindow::onApplicationExitTriggered() {
+    // Код, который будет выполнен при нажатии на action_2
+    qDebug() << "Действие action_2 выполнено!";
 }

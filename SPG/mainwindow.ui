@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>803</width>
     <height>600</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>800</width>
+    <width>803</width>
     <height>600</height>
    </size>
   </property>
@@ -108,7 +108,7 @@
               <bool>true</bool>
              </property>
              <property name="placeholderText">
-              <string>Название сайта</string>
+              <string>Название</string>
              </property>
             </widget>
            </item>
@@ -498,7 +498,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Поиск по названию сайта</string>
+            <string>Поиск по названию </string>
            </property>
           </widget>
          </item>
@@ -561,7 +561,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>524</width>
+         <width>527</width>
          <height>480</height>
         </rect>
        </property>
@@ -575,7 +575,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>803</width>
      <height>22</height>
     </rect>
    </property>
@@ -583,12 +583,18 @@
     <property name="title">
      <string>Меню</string>
     </property>
-    <addaction name="action"/>
+    <addaction name="applicationExit"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action">
+   <property name="text">
+    <string>Выход</string>
+   </property>
+  </action>
+  <action name="applicationExit">
    <property name="text">
     <string>Выход</string>
    </property>

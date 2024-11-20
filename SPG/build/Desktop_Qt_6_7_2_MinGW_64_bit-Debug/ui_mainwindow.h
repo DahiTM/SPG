@@ -35,6 +35,7 @@ class Ui_MainWindow
 {
 public:
     QAction *action;
+    QAction *applicationExit;
     QWidget *centralwidget;
     QGridLayout *gridLayout;
     QFrame *frame;
@@ -85,19 +86,21 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(803, 600);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
-        MainWindow->setMinimumSize(QSize(800, 600));
+        MainWindow->setMinimumSize(QSize(803, 600));
         QFont font;
         font.setPointSize(10);
         font.setBold(true);
         MainWindow->setFont(font);
         action = new QAction(MainWindow);
         action->setObjectName("action");
+        applicationExit = new QAction(MainWindow);
+        applicationExit->setObjectName("applicationExit");
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
@@ -360,7 +363,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 524, 480));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 527, 480));
         scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout->addWidget(scrollArea, 1, 1, 3, 1);
@@ -368,7 +371,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 803, 22));
         menuMenu = new QMenu(menubar);
         menuMenu->setObjectName("menuMenu");
         MainWindow->setMenuBar(menubar);
@@ -377,7 +380,8 @@ public:
         MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menuMenu->menuAction());
-        menuMenu->addAction(action);
+        menuMenu->addAction(applicationExit);
+        menuMenu->addSeparator();
 
         retranslateUi(MainWindow);
 
@@ -388,9 +392,10 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "SPG", nullptr));
         action->setText(QCoreApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
+        applicationExit->setText(QCoreApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "\320\222\320\262\320\276\320\264 \320\275\320\276\320\262\321\213\321\205 \320\264\320\260\320\275\320\275\321\213\321\205", nullptr));
         lineEdit->setText(QString());
-        lineEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \321\201\320\260\320\271\321\202\320\260", nullptr));
+        lineEdit->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265", nullptr));
         lineEdit_2->setText(QString());
         lineEdit_2->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\233\320\276\320\263\320\270\320\275", nullptr));
         lineEdit_3->setText(QString());
@@ -408,7 +413,7 @@ public:
         label_7->setText(QCoreApplication::translate("MainWindow", "\320\222\320\265\321\200\321\201\320\270\321\217 0.0.0", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "\320\236\321\200\320\263\320\260\320\275\320\270\320\267\320\260\321\206\320\270\321\217", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\321\207\321\202\320\260", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272 \320\277\320\276 \320\275\320\260\320\267\320\262\320\260\320\275\320\270\321\216 \321\201\320\260\320\271\321\202\320\260", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\270\321\201\320\272 \320\277\320\276 \320\275\320\260\320\267\320\262\320\260\320\275\320\270\321\216 ", nullptr));
         lineEdit_4->setText(QString());
         lineEdit_4->setPlaceholderText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\321\200: yandex", nullptr));
         menuMenu->setTitle(QCoreApplication::translate("MainWindow", "\320\234\320\265\320\275\321\216", nullptr));
