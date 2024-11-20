@@ -31,7 +31,7 @@ void MainWindow::on_pushButton_clicked()
 {
     if(passLength && oneBigLetter && oneNum && oneSymbol && !ui->lineEdit->text().isEmpty() && !ui->lineEdit_2->text().isEmpty()){
 
-        int shift = 3; // Сдвиг для шифра Цезаря
+        int shift = 3;
         std::string encryptedPassword = caesarEncrypt(ui->lineEdit_3->text().toStdString(), shift);
 
         WebsiteInfo info1 = { ui->lineEdit->text().toStdString(), ui->lineEdit_2->text().toStdString(), encryptedPassword };
@@ -171,7 +171,7 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
     deleteButton->setIcon(QIcon::fromTheme("edit-delete"));
     deleteButton->setFixedSize(31, 31);
     connect(deleteButton, &QPushButton::clicked, this, [this, siteName, newGroupBox]() {
-        // Удаляем информацию из векторов
+
         auto it = std::find(sit.begin(), sit.end(), siteName.toStdString());
         if (it != sit.end()) {
             size_t index = std::distance(sit.begin(), it);
@@ -180,10 +180,8 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
             pass.erase(pass.begin() + index);
         }
 
-        // Обновляем файл
         updateFile();
 
-        // Удаляем QGroupBox
         delete newGroupBox;
         addNewGroupBoxesToScrollArea(ui->scrollArea, sit, log, pass);
         QMessageBox::information(nullptr,"Информация","Поле с данными было удалено");
@@ -195,7 +193,7 @@ QGroupBox* MainWindow::createNewGroupBox(const QString& siteName, const QString&
 
     layout->addLayout(loginLayout);
     layout->addLayout(passwordLayout);
-    layout->addWidget(deleteButton, 0, Qt::AlignBottom | Qt::AlignRight); // Размещение кнопки внизу справа
+    layout->addWidget(deleteButton, 0, Qt::AlignBottom | Qt::AlignRight);
 
     newGroupBox->setLayout(layout);
     return newGroupBox;
@@ -226,8 +224,8 @@ void MainWindow::addNewGroupBoxesToScrollArea(QScrollArea* scrollArea,
             rowLayout = new QHBoxLayout();
         }
 
-        // Дешифруем пароль перед отображением
-        int shift = 3; // Сдвиг для шифра Цезаря
+
+        int shift = 3;
         std::string decryptedPassword = caesarDecrypt(passwords[i], shift);
 
         QGroupBox* newGroupBox = createNewGroupBox(QString::fromStdString(sites[i]),
@@ -301,7 +299,7 @@ std::vector<WebsiteInfo> MainWindow::readFromFile() {
 }
 
 void MainWindow::updateFile() {
-    std::ofstream file("infoPass.txt", std::ios::trunc); // Очищаем файл
+    std::ofstream file("infoPass.txt", std::ios::trunc);
     for (size_t i = 0; i < sit.size(); ++i) {
         file << sit[i] << "-" << log[i] << "-" << pass[i] << "\n";
     }
@@ -327,20 +325,23 @@ void MainWindow::onSearchTextChanged(const QString &text) {
 std::string MainWindow::caesarEncrypt(const std::string &input, int shift) {
     std::string output = input;
     for (char &c : output) {
-        if (std::isalpha(c)) { // Проверяем, является ли символ буквой
+        if (std::isalpha(c)) {
             char base = std::isupper(c) ? 'A' : 'a';
-            c = (c - base + shift) % 26 + base; // Шифруем символ
+            c = (c - base + shift) % 26 + base;
         }
     }
     return output;
 }
 
 std::string MainWindow::caesarDecrypt(const std::string &input, int shift) {
-    return caesarEncrypt(input, 26 - shift); // Дешифрование — это шифрование с обратным сдвигом
+    return caesarEncrypt(input, 26 - shift);
 
 }
 
 void MainWindow::onApplicationExitTriggered() {
-    // Код, который будет выполнен при нажатии на action_2
-    qDebug() << "Действие action_2 выполнено!";
+    if(passGen.isVisible()){
+        passGen.close();
+    }
+    this->close();
+    qDebug() << "Осуществлён выход через кнопку 'Выход'";
 }
