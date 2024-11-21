@@ -6,9 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QIcon icon("images/passMenag.png");
-    this->setWindowIcon(icon);
-
+   // QIcon icon(":/images/passMenag.png");
+    //this->setWindowIcon(icon);
+        //IDI_ICON1 ICON DISCARDABLE "passMenag.png"
     std::vector<WebsiteInfo> retrievedInfoList = readFromFile();
     for (const WebsiteInfo& retrievedInfo : retrievedInfoList) {
         sit.push_back(retrievedInfo.name);

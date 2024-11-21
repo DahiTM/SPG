@@ -413,7 +413,8 @@ Makefile: ../../SPG.pro D:/QTCreator/6.7.2/mingw_64/mkspecs/win32-g++/qmake.conf
 		D:/QTCreator/6.7.2/mingw_64/lib/Qt6Gui.prl \
 		D:/QTCreator/6.7.2/mingw_64/lib/Qt6Core.prl \
 		D:/QTCreator/6.7.2/mingw_64/lib/Qt6EntryPoint.prl \
-		D:/QTCreator/6.7.2/mingw_64/mkspecs/features/build_pass.prf
+		D:/QTCreator/6.7.2/mingw_64/mkspecs/features/build_pass.prf \
+		../../resourse.qrc
 	$(QMAKE) -o Makefile ..\..\SPG.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 D:/QTCreator/6.7.2/mingw_64/mkspecs/features/spec_pre.prf:
 D:/QTCreator/6.7.2/mingw_64/mkspecs/features/device_config.prf:
@@ -759,6 +760,7 @@ D:/QTCreator/6.7.2/mingw_64/lib/Qt6Gui.prl:
 D:/QTCreator/6.7.2/mingw_64/lib/Qt6Core.prl:
 D:/QTCreator/6.7.2/mingw_64/lib/Qt6EntryPoint.prl:
 D:/QTCreator/6.7.2/mingw_64/mkspecs/features/build_pass.prf:
+../../resourse.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\SPG.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

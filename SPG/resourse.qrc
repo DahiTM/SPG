@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>key.png</file>
+        <file>passMenag.ico</file>
+    </qresource>
+</RCC>
