@@ -41,6 +41,11 @@ private slots:
 
     void on_lineEdit_3_textChanged(const QString &arg1);
 
+    void onSearchTextChanged(const QString &text);
+
+    void onApplicationExitTriggered();
+
+private:
     QGroupBox* createNewGroupBox(const QString& siteName, const QString& login, const QString& password);
     void addNewGroupBoxesToScrollArea(QScrollArea* scrollArea,const std::vector<std::string>& sites,
                                                               const std::vector<std::string>& logins,
@@ -52,12 +57,9 @@ private slots:
     std::vector<WebsiteInfo> readFromFile();
     void updateFile();
 
-    void onSearchTextChanged(const QString &text);
-
     std::string caesarEncrypt(const std::string &input, int shift);
     std::string caesarDecrypt(const std::string &input, int shift);
 
-    void onApplicationExitTriggered();
 private:
     Ui::MainWindow *ui;
     PasswordGenerator passGen;
